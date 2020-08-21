@@ -1,0 +1,57 @@
+#Imports
+import itertools
+import math
+import numpy as np
+
+
+#Function
+def get_cell(aPrev3Cells):
+    return RULE_DICT[repr(aPrev3Cells)]
+
+
+#Initialization
+input_rule=[int(input('111: ')),
+            int(input('110: ')),
+            int(input('101: ')),
+            int(input('100: ')),
+            int(input('011: ')),
+            int(input('010: ')),
+            int(input('001: ')),
+            int(input('000: ')),]
+input_width=int(input('length of each generation: '))
+input_gen=int(input('# of generations: '))
+input_start=input('list of cells that will start alive: ')
+
+input_start=[int(i) for i in input_start.strip().split(',')]
+gen_array = np.zeros(shape=(input_gen,input_width)).astype(int)
+for s in input_start:
+    gen_array[0,s]=1
+    
+    
+#Dictionaries
+RULE_DICT={repr([1, 1, 1]) : repr(input_rule[0]),
+           repr([1, 1, 0]) : repr(input_rule[1]),
+           repr([1, 0, 1]) : repr(input_rule[2]),
+           repr([1, 0, 0]) : repr(input_rule[3]),
+           repr([0, 1, 1]) : repr(input_rule[4]),
+           repr([0, 1, 0]) : repr(input_rule[5]),
+           repr([0, 0, 1]) : repr(input_rule[6]),
+           repr([0, 0, 0]) : repr(input_rule[7])}
+
+DEAD_LIVE=[u'⬜',u'⬛']
+
+     
+#Generation
+for g in range(1,input_gen):
+    aug_prev_gen=[0]+list(gen_array[g-1,])+[0]
+    for i in range(0,input_width):
+        above3=[aug_prev_gen[i], aug_prev_gen[i+1], aug_prev_gen[i+2]]   
+        gen_array[g,i]=get_cell(above3)
+    
+    
+#Printing
+map_gen=np.vectorize(lambda x : DEAD_LIVE[x])
+gen_array_str=map_gen(gen_array)
+
+for k in range(0,input_gen):
+    print(''.join(gen_array_str[k,]))
