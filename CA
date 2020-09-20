@@ -3,24 +3,28 @@ import itertools
 import math
 import numpy as np
 
-
 #Function
 def get_cell(aPrev3Cells):
     return RULE_DICT[repr(aPrev3Cells)]
 
+print("every 3 adjacent cells determine whehter the cell below is dead or alive")
+print("whenever you are asked to input something type your answer and then hit enter")
+print("for every combination of cells input the output of for that certain combination")
+print("a 1 means a black square meaning alive")
+print("a 0 means a white square meaning dead")
 
 #Initialization
-input_rule=[int(input('111: ')),
-            int(input('110: ')),
-            int(input('101: ')),
-            int(input('100: ')),
-            int(input('011: ')),
-            int(input('010: ')),
-            int(input('001: ')),
-            int(input('000: ')),]
+input_rule=[int(input('⬛⬛⬛: ')),
+            int(input('⬛⬛⬜: ')),
+            int(input('⬛⬜⬛: ')),
+            int(input('⬛⬜⬜: ')),
+            int(input('⬜⬛⬛: ')),
+            int(input('⬜⬛⬜: ')),
+            int(input('⬜⬜⬛: ')),
+            int(input('⬜⬜⬜: ')),]
 input_width=int(input('length of each generation: '))
 input_gen=int(input('# of generations: '))
-input_start=input('list of cells that will start alive: ')
+input_start=input('list of cells that will start alive(highest number has to be 1 less than the length): ')
 
 input_start=[int(i) for i in input_start.strip().split(',')]
 gen_array = np.zeros(shape=(input_gen,input_width)).astype(int)
