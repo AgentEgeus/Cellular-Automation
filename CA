@@ -8,10 +8,9 @@ def get_cell(aPrev3Cells):
     return RULE_DICT[repr(aPrev3Cells)]
 
 print("every 3 adjacent cells determine whehter the cell below is dead or alive")
-print("whenever you are asked to input something type your answer and then hit enter")
-print("for every combination of cells input the output of for that certain combination")
-print("a 1 means a black square meaning alive")
-print("a 0 means a white square meaning dead")
+print("for every combination of cells input the output for that certain combination")
+print("1 means a black square meaning alive")
+print("0 means a white square meaning dead")
 
 #Initialization
 input_rule=[int(input('⬛⬛⬛: ')),
